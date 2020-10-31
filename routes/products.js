@@ -72,6 +72,41 @@ router.post('/save-cart', verifyAuth, async (req, res) => {
 	}
 });
 
+
+router.get('/check-stock', verifyAuth, async (req, res) => {
+	try {
+		const user = await User.findOne({
+			'details.id': req.authID
+		}, {cart:1}).populate({path: 'cart.product', select: 'stock dish photoURL price restaurant'}).exec();
+
+		user.cart.forEach(item => {
+			if(item.product.stock < item.quantity) {
+				return res.status(200).json({
+					code: 400,
+					msg: 'All foods not in stock right Now',
+					cart: user.cart.map(item => {
+							return {
+								...item.product._doc,
+								quantity: item.quantity,
+							}
+						})
+				});
+			}
+		});
+
+		return res.status(200).json({
+			code: 200,
+			msg: 'Stock available'
+		});
+
+	} catch (error) {
+		return res.status(500).json({
+			msg: 'Server error',
+		});
+	}
+});
+
+
 router.post('/admin/add-product', verifyAuth, async (req, res) => {
 	try {
 		if (!req.siteAdmin) {
@@ -79,10 +114,11 @@ router.post('/admin/add-product', verifyAuth, async (req, res) => {
 				msg: 'Unauthorized Access',
 			});
 		}
-		await Product.create(req.body);
+		const product = await Product.create(req.body);
 		return res.json({
 			code: 'Server Notification',
 			message: 'Product Details Uploaded Successfully',
+			id: product._id,
 		});
 	} catch (e) {
 		console.log(e);
@@ -121,5 +157,68 @@ router.get('/product/:id/reviews', verifyAuth, async (req, res) => {
 		});
 	}
 });
+
+
+
+
+
+
+// Seraching with filters
+router.get('/products/search', verifyAuth, async (req, res) => {
+	try {
+		let restaurants = [
+                "Looters",
+                "ANC",
+				"Pizzeria",
+				"Tott"
+			];
+		let foodCategories = [
+                    "Burgers",
+                    "Pizza",
+                    "Drinks",
+                    "Rolls",
+                    "Momos",
+                    "Ice Cream",
+                    "Noodles"
+				];
+		
+
+		let {text, category, restaurant, price, stocked} = req.query;
+		
+		let products;
+		
+		if(restaurant) restaurants = [restaurant];
+
+		if(category) foodCategories = [category];
+
+		if(!price) price = 100; 
+
+
+		console.log(text);
+
+
+		if(stocked) {
+			products = await Product
+			.find({ $text: {$search: text}, category: {$in: foodCategories }, restaurant: {$in: restaurants}, price: {$lt: price}, stock: {$gt: 0}}, {description: 0, reviews: 0})
+			.sort({ createdAt: -1 });
+		} else {
+			products = await Product
+			.find({ $text: {$search: text}, category: {$in: foodCategories }, restaurant: {$in: restaurants}, price: {$lt: price}}, {description: 0, reviews: 0})
+			.sort({ createdAt: -1 });
+		}
+
+		return res.json({
+			mathedFound: products.length,
+			results: products,
+		});
+	} catch (error) {
+		return res.status(500).json({
+			msg: 'Server error',
+		});
+	}
+});
+
+
+
 
 module.exports = router;

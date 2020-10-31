@@ -69,9 +69,9 @@
                   </div>
                 </th>
                 <td>
-                  <router-link :to="'/view/' + item.product._id">{{
-                    item.product.dish
-                  }}</router-link>
+                  {{item.product.dish}}
+                  <br>
+                  <router-link :to="'/view/' + item.product._id + '#feedback'">Give Feedback</router-link>
                 </td>
                 <td class="price text-danger">{{ item.product.restaurant }}</td>
                 <td class="price">₹ {{ formatPrice(item.product.price) }}</td>

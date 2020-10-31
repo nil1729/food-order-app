@@ -38,4 +38,20 @@ export default {
         console.log(e);
       }
     },
+
+    async checkAvailivility(context) {
+      try {
+        const res = await axios.get('/api/v1/check-stock', createConfig());
+        if(res.data.code === 400) {
+            context.commit("SET_ERRORS", {
+            code: "Notification",
+            message: res.data.msg,
+          });
+          context.commit("SET_CART_STATE", res.data.cart);
+          return false;
+        } else return true;
+      } catch (error) {
+        console.log(error);
+      }
+    }
 }

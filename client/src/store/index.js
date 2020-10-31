@@ -55,6 +55,7 @@ const store = new Vuex.Store({
     adminOrders: null,
     adminStoreStats: null,
     productReviews: null,
+    searchResults: null,
   },
 
 

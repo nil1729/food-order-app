@@ -51,6 +51,11 @@ const routes = [{
 				name: 'User-Orders',
 				component: () => import('@/components/pages/userOrder.vue'),
 			},
+			{
+				path: '/search',
+				name: 'Search-Foods',
+				component: () => import('@/components/pages/search.vue'),
+			},
 
 
 			// Admin Routes

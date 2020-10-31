@@ -22,6 +22,7 @@ export default {
           dbProduct,
           createConfig()
         );
+        dbProduct._id = res.data.id;
         context.commit("ADD_PRODUCT_IN_LIST", dbProduct);
         context.commit("SET_PRODUCT_UPLOADING", false);
         context.commit("SET_ERRORS", res.data);

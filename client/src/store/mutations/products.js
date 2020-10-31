@@ -11,4 +11,8 @@ export default {
     SET_PRODUCTS: function (state, products) {
       state.products = products;
     },
+
+    SET_SEARCH_PRODUCT_RESULTS: function (state, payload) {
+      state.searchResults = payload;
+    },
 }

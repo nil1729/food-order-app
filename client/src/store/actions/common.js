@@ -42,4 +42,15 @@ export default {
       }
       context.commit("SET_VIEW_PRODUCT_FETCHING", false);
     },
+
+    async fecthSearchResults(context, query) {
+      try {
+        const res = await axios.get('/api/v1/products/search?' + query, createConfig());
+        if(res.status === 200) {
+          context.commit('SET_SEARCH_PRODUCT_RESULTS', res.data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
 }

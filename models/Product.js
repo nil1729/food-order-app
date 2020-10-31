@@ -4,18 +4,22 @@ const productSchema = mongoose.Schema(
 	{
 		dish: {
 			type: String,
+			text: true,
 			required: true,
 		},
 		restaurant: {
 			type: String,
+			text: true,
 			required: true,
 		},
 		photoURL: {
 			type: String,
+			text: true,
 			required: true,
 		},
 		description: {
 			type: String,
+			text: true,
 			required: true,
 		},
 		price: {
@@ -28,6 +32,7 @@ const productSchema = mongoose.Schema(
 		},
 		category: {
 			type: String,
+			text: true,
 			required: true,
 		},
 		reviews: [

@@ -2,9 +2,12 @@
   <div class="card" style="width: 18rem;">
     <div class="image">
       <img :src="product && product.photoURL" alt />
-      <button @click="addToCart(product)" class="btn btn-primary cart-btn">
+      <button v-if="product && product.stock > 0" @click="addToCart(product)" class="btn btn-primary cart-btn">
         <i v-if="!hasCarted(product && product._id)" class="fal fa-cart-arrow-down"></i>
         <p v-else class="lead mb-0">In Cart</p>
+      </button>
+      <button disabled v-else class="btn btn-danger cart-btn">
+        <p class="lead mb-0">Out of Stock</p>
       </button>
     </div>
     <div class="card-body  border-top">

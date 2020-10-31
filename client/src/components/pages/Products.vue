@@ -1,6 +1,6 @@
 <template>
   <div class="container mt-3">
-    <h1 class="text-center mb-5 font-weight-bold">Our Foods</h1>
+    <h1 class="text-center mb-4 font-weight-bold">Our Foods</h1>
     <div v-if="loading" class="container text-center">
       <img src="@/assets/search.gif" alt="Loader" />
     </div>

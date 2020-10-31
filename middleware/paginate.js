@@ -18,7 +18,7 @@ module.exports = model => {
 			}
 			products.results = await model
 				.find({}, {description: 0, brand: 0, reviews: 0})
-				.sort({ updatedAt: -1 })
+				.sort({ createdAt: -1 })
 				.limit(pageLen)
 				.skip(startIndex)
 				.exec();

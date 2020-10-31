@@ -4,7 +4,7 @@ export default {
     },
     ADD_PRODUCT_IN_LIST(state, payload) {
       if (state.products.current === 1) {
-        state.products.results.pop();
+        if(state.products.results.length === 8) state.products.results.pop();
         state.products.results = [payload, ...state.products.results];
       }
     },

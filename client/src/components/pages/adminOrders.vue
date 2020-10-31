@@ -8,7 +8,7 @@
     </div>
     <div v-else>
       <h1 v-if="isEmpty" class="text-center order-empty-text mt-5">
-        Phone Store don't have any order yet
+        Food Site don't have any order yet
       </h1>
       <div v-else class="mt-3">
         <div
@@ -64,8 +64,8 @@
             <table class="table products-table mt-4">
               <thead>
                 <tr class="text-uppercase">
-                  <th scope="col">products</th>
-                  <th scope="col">model</th>
+                  <th scope="col">food items</th>
+                  <th scope="col">dish</th>
                   <th scope="col">price</th>
                   <th scope="col">quantity</th>
                 </tr>
@@ -83,7 +83,7 @@
                   </th>
                   <td>
                     <router-link :to="'/view/' + item.product._id">{{
-                      item.product.model
+                      item.product.dish
                     }}</router-link>
                   </td>
                   <td class="price">₹ {{ formatPrice(item.product.price) }}</td>

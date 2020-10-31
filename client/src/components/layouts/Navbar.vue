@@ -15,6 +15,17 @@
     </div>
     <div class="ml-auto">
       <ul class="navbar-nav mr-auto ml-5 align-items-center">
+        <li class="nav-item">
+          <router-link
+            to="/search"
+            type="button"
+            class="btn mr-2 btn-outline-light"
+            id="add-btn"
+          >
+            <i class="fal fa-search"></i>
+            Search
+          </router-link>
+        </li>
         <li v-if="$store.state.isAdmin" class="nav-item">
           <router-link
             to="/admin/add-product"

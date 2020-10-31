@@ -5,6 +5,7 @@ const payPalClient = require('../config/paypal');
 const checkoutNodeJssdk = require('@paypal/checkout-server-sdk');
 const Order = require('../models/Order');
 const User = require('../models/User');
+const Product = require('../models/Product');
 
 
 
@@ -114,6 +115,9 @@ router.post('/checkout/verify-order', verifyAuth, async (req, res) => {
                 __v: 0
             }).populate('products.product').exec();
 
+            order.products.forEach(async item => {
+                await Product.updateOne({_id: item.product._id}, {$set: {stock: item.product.stock - item.quantity }});
+            });
 
             return res.status(200).json({
                 msg: 'Order Succesfully Created',

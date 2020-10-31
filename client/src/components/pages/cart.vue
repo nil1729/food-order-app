@@ -32,6 +32,8 @@
               <router-link :to="'/view/' + item._id">{{
                 item.dish
               }}</router-link>
+              <br>
+              <p v-if="item.stock <= 0" class='lead text-danger'>Out of Stock</p>
             </td>
             <td class="price">₹ {{ formatPrice(item.price) }}</td>
             <td class="price text-danger">{{ item.restaurant }}</td>
@@ -46,11 +48,11 @@
                   -
                 </button>
                 <button type="button" class="btn btn-outline-info">
-                  {{ item.quantity }}
+                  {{ item.quantity > item.stock ? item.stock : item.quantity }}
                 </button>
                 <button
                   @click="changeQuantity(item._id, 1)"
-                  :disabled="item.quantity > 9"
+                  :disabled="item.stock===1 || item.stock < item.quantity"
                   type="button"
                   class="btn btn-outline-info"
                 >
@@ -114,8 +116,8 @@
             >₹ {{ formatPrice((taxTotal + productTotal).toFixed(2)) }}</span
           >
         </p>
-        <button @click="checkout" class="btn mt-1 mb-4 btn-success">
-          Proceed to Checkout
+        <button :disabled="availibilityChecking" @click="checkout" class="btn mt-1 mb-4 btn-success">
+          {{!availibilityChecking ? 'Proceed to Checkout' : 'Checking Availibility'}}
           <i class="ml-1 fal fa-shopping-cart"></i>
         </button>
       </div>
@@ -134,6 +136,7 @@ export default {
       showSaveButton: false,
       loading: false,
       cartSaved: null,
+      availibilityChecking: false,
     };
   },
   watch: {
@@ -187,10 +190,18 @@ export default {
     // TODO only for Development
     async checkout() {
       try {
+        this.availibilityChecking = true;
         if (this.isChanged) {
           await this.handleSaveCart();
         }
-        this.$router.push("/checkout/shipping");
+        
+        const available = await this.$store.dispatch("checkAvailivility");
+        this.availibilityChecking = false;
+        
+        if(available) {
+          this.$router.push("/checkout/shipping");
+        }
+        
       } catch (error) {
         console.error(error);
       }
