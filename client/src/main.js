@@ -36,7 +36,7 @@ const warningTitleCSS = 'color:red; font-size:60px; font-weight: bold; -webkit-t
 const warningDescCSS = 'font-size: 18px;';
 console.log('%cThank You!', warningTitleCSS);
 console.log("%cMade by Nilanjan. Using Firebase, VueJS, NodeJS and MongoDB", warningDescCSS);
-console.log('%cGo to https://github.com/nil1729/vue-phone-store for source code.', warningDescCSS);
+console.log('%cGo to https://github.com/nil1729/food-order-app for source code.', warningDescCSS);
 console.log('%cIf you like this project, Please give a star on this repository.', warningDescCSS);
 
 // =================================== //

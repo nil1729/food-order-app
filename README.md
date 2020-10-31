@@ -2,17 +2,17 @@
 
 Simple Phone Buying store Using VueJS, firebase, NodeJS and MongoDB.
 
-- #### Live Demo [here](https://vue-phone-store.herokuapp.com/).
+- #### Live Demo [here](https://food-order-app-nil.herokuapp.com/).
   - Test User Credentials
-    - Email: `nil@gmail.co`
+    - Email: `user@gmail.co`
     - Password: `123456`
   - Test Admin Credentials
-    - Email: `admin@store.com`
+    - Email: `foodsite@store.com`
     - Password: `123456`
   - Test PayPal Credentials
     - Email: `nil.personal.dev@gmail.com`
     - Password: `123456789`
-- #### Github Repository [link](https://github.com/nil1729/vue-phone-store).
+- #### Github Repository [link](https://github.com/nil1729/food-order-app).
 
 ---
 
@@ -50,7 +50,7 @@ Simple Phone Buying store Using VueJS, firebase, NodeJS and MongoDB.
 
    - Clone this Repository or Download the zip File.
      ```
-      >> git clone https://github.com/nil1729/vue-phone-store
+      >> git clone https://github.com/nil1729/phone-order-app.git
      ```
    - Create a new file named `secret.json` on `config` directory which contains Generated Private keys on Firebase project.
 
@@ -110,11 +110,11 @@ Simple Phone Buying store Using VueJS, firebase, NodeJS and MongoDB.
        >> npm run admin
      ```
 
----
+<!-- --- -->
 
-### Website Preview
+<!-- ### Website Preview
 
-## <img src="./preview.png" alt="Nilanjan Deb">
+## <img src="./preview.png" alt="Nilanjan Deb"> -->
 
 ---
 
