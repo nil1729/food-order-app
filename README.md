@@ -1,6 +1,6 @@
-## Phone Store using Vue JS
+## Food Ordering Web App using Vue JS
 
-Simple Phone Buying store Using VueJS, firebase, NodeJS and MongoDB.
+Simple food ordering website Using VueJS, firebase, NodeJS and MongoDB.
 
 - #### Live Demo [here](https://food-order-app-nil.herokuapp.com/).
   - Test User Credentials
