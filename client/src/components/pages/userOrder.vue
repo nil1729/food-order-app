@@ -129,6 +129,10 @@ export default {
 </script>
 
 <style scoped>
+.container.mb-5 {
+  margin-bottom: 10rem!important;
+}
+
 h5.order-header {
   border-bottom: 1.5px solid #dee2e6;
   width: fit-content;

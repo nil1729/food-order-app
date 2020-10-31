@@ -1,27 +1,35 @@
 <template>
-  <div class="conatiner">
+  <div>
+  <div class="conatiner home-conatiner">
     <app-file-loader />
     <app-product-modal />
     <app-navbar />
     <router-view />
   </div>
+  <app-footer />
+</div>
 </template>
 
 <script>
 import ProductModal from "../layouts/ProductModal";
 import Navbar from "../layouts/Navbar";
 import FileLoader from "../utils/BackDrop";
+import Footer from "../layouts/Footer";
 export default {
   name: "Home",
   components: {
     "app-navbar": Navbar,
     "app-product-modal": ProductModal,
     "app-file-loader": FileLoader,
+    "app-footer": Footer,
   },
 };
 </script>
 
 <style>
+.home-conatiner {
+  margin-bottom: 6rem;
+}
 /* Star Rating System */
 .stars-inner {
     position: absolute;

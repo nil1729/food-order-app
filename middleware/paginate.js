@@ -1,6 +1,6 @@
 module.exports = model => {
 	return async (req, res, next) => {
-		const len = await model.countDocuments().exec();
+		const len = await model.countDocuments({category: {$not: /Combos/}}).exec();
 		const page = parseInt(req.query.page);
 		const pageLen = 8;
 		const pageNo = Math.ceil(len / pageLen);
@@ -17,7 +17,7 @@ module.exports = model => {
 				products.next = page + 1;
 			}
 			products.results = await model
-				.find({}, {description: 0, brand: 0, reviews: 0})
+				.find({category: {$not: /Combos/ }}, {description: 0, reviews: 0})
 				.sort({ createdAt: -1 })
 				.limit(pageLen)
 				.skip(startIndex)

@@ -1,4 +1,8 @@
 <template>
+<div>
+  <h1 class="text-center text-warning mt-3 mb-4 font-weight-normal">
+    <i class="fa-2x fad fa-burger-soda"></i> Food Site
+  </h1>
   <div class="container bg-light py-4 px-5 my-3">
     <h2 class="text-info text-center">
       {{ mode === "login" ? "Login" : "Register" }}
@@ -75,6 +79,7 @@
       </button>
     </div>
   </div>
+</div>
 </template>
 
 <script>

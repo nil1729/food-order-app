@@ -87,6 +87,7 @@
               <option>Momos</option>
               <option>Ice Cream</option>
               <option>Noodles</option>
+              <option>Combos</option>
             </select>
           </div>
         </div>

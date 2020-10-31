@@ -14,11 +14,13 @@ export default {
         if (!localStorage.AUTH_TOKEN) {
           return;
         }
-        const res = await axios.get(
+        let res = await axios.get(
           `/api/v1/products?page=${page}`,
           createConfig()
         );
         context.commit("SET_PRODUCTS", res.data.products);
+        res = await axios.get(`/api/v1/products/combos`, createConfig());
+        context.commit('SET_FOOD_COMBOS', res.data);
         context.commit("SET_PRODUCT_LOADING", false);
       } catch (e) {
         console.log(e);

@@ -44,9 +44,9 @@
       </div>
       <div class="col-md-4 border px-2 py-3">
         <div class="ml-3">
-          <h4>Products Management</h4>
+          <h4>Foods Management</h4>
           <p class="mb-1 text-primary mt-3">
-            Total products :
+            Total Dishes :
             <span class="ml-2 font-weight-normal text-dark">{{
               isLoading
                 ? "Loading ..."
@@ -54,7 +54,7 @@
             }}</span>
           </p>
           <router-link class="mt-2 btn btn-sm btn-outline-warning" to="/">
-            Products Page
+            See all Dishes
           </router-link>
         </div>
       </div>

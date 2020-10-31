@@ -159,6 +159,17 @@ router.get('/product/:id/reviews', verifyAuth, async (req, res) => {
 });
 
 
+// Combo Foods
+router.get('/products/combos', verifyAuth, async (req, res) => {
+	try {
+		const products = await Product.find({category: 'Combos'}, {description: 0, reviews: 0});
+		return res.json(products);
+	} catch (error) {
+		return res.status(500).json({
+			msg: 'Server error',
+		});
+	}
+});
 
 
 

@@ -289,4 +289,8 @@ button {
 .lead {
   font-weight: 500;
 }
+
+.container {
+  margin-bottom: 13.5rem;
+}
 </style>

@@ -15,4 +15,7 @@ export default {
     SET_SEARCH_PRODUCT_RESULTS: function (state, payload) {
       state.searchResults = payload;
     },
+    SET_FOOD_COMBOS(state, payload) {
+      state.foodCombos = payload;
+    }
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="container mt-3">
-    <h1 class="text-center mb-4 font-weight-bold">Our Foods</h1>
+    <h1 class="text-center mb-4 font-weight-bold">Our Popular Dishes</h1>
     <div v-if="loading" class="container text-center">
       <img src="@/assets/search.gif" alt="Loader" />
     </div>
@@ -17,6 +17,20 @@
       </div>
       <app-pagination-block v-if="products.length !== 0" />
     </div>
+    <hr class="my-2">
+    <h1 class="text-center mt-5 mb-4 font-weight-bold">Food Combos</h1>
+    <div v-if="foodCombos" class="row mb-3">
+      <h3 v-if="foodCombos && foodCombos.length === 0" class="mx-auto order-empty-text">
+        Food Site don't have any Food Combos right now.
+      </h3>
+      <div
+        v-for="item in foodCombos"
+        :key="item._id"
+        class="col-xl-3 col-lg-4 col-md-6 col-xs-12 mb-4"
+      >
+        <app-product-item :product="item" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -28,6 +42,9 @@ export default {
   computed: {
     products() {
       return this.$store.state.products.results;
+    },
+    foodCombos() {
+      return this.$store.state.foodCombos;
     },
     loading() {
       return this.$store.state.productFetching;
