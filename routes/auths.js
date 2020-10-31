@@ -104,7 +104,7 @@ router.get("/login", verifyAuth, async (req, res) => {
 			createdAt: 0,
 			updatedAt: 0,
 			isAdmin: 0
-		}).populate({path: 'cart.product', select: 'model photoURL price'}).exec();
+		}).populate({path: 'cart.product', select: 'dish photoURL price restaurant'}).exec();
 		user = {
 			...user._doc,
 			cart: user.cart.map(item => {

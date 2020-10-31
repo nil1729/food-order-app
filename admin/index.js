@@ -1,3 +1,4 @@
+require('dotenv').config();
 const { program } = require('commander');
 const { prompt, questions } = require('./question');
 const firebaseAdmin = require('../config/admin');
@@ -6,6 +7,8 @@ const photoURL =
 const adminClaim = {
 	siteAdmin: true,
 };
+const User = require('../models/User');
+const connectDB = require('../config/db');
 
 const main = async () => {
 	program.version('1.0.0').description('VueJS Phone Buying Store');
@@ -16,6 +19,7 @@ const main = async () => {
 			const { email, displayName, phoneNumber, password } = await prompt(
 				questions
 			);
+			await connectDB();
 			console.log('\n\nNew Admin is Creating ....\n');
 			try {
 				let newAdmin = await firebaseAdmin
@@ -24,13 +28,9 @@ const main = async () => {
 				await firebaseAdmin
 					.auth()
 					.setCustomUserClaims(newAdmin.uid, adminClaim);
-				await firebaseAdmin
-					.firestore()
-					.collection('users')
-					.doc(newAdmin.uid)
-					.set({
-						cart: [],
-						details: {
+				await User.create({
+					isAdmin: true,
+					details: {
 							id: newAdmin.uid,
 							...newAdmin.providerData[0],
 							phoneNumber: phoneNumber,
@@ -40,7 +40,7 @@ const main = async () => {
 			} catch (e) {
 				console.log(e);
 			}
-			process.exit(1);
+			process.exit(0);
 		});
 	program.parseAsync(process.argv);
 };

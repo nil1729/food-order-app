@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 
 const productSchema = mongoose.Schema(
 	{
-		model: {
+		dish: {
 			type: String,
 			required: true,
 		},
-		brand: {
+		restaurant: {
 			type: String,
 			required: true,
 		},
@@ -20,6 +20,14 @@ const productSchema = mongoose.Schema(
 		},
 		price: {
 			type: Number,
+			required: true,
+		},
+		stock: {
+			type: Number,
+			required: true,
+		},
+		category: {
+			type: String,
 			required: true,
 		},
 		reviews: [

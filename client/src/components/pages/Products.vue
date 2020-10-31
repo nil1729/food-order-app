@@ -1,10 +1,13 @@
 <template>
   <div class="container mt-3">
-    <h1 class="text-center mb-5">Our Products</h1>
+    <h1 class="text-center mb-5 font-weight-bold">Our Foods</h1>
     <div v-if="loading" class="container text-center">
       <img src="@/assets/search.gif" alt="Loader" />
     </div>
     <div v-else class="row mb-3">
+      <h3 v-if="products.length === 0" class="mx-auto order-empty-text">
+        Food Site don't have any food right now.
+      </h3>
       <div
         v-for="item in products"
         :key="item._id"
@@ -12,7 +15,7 @@
       >
         <app-product-item :product="item" />
       </div>
-      <app-pagination-block />
+      <app-pagination-block v-if="products.length !== 0" />
     </div>
   </div>
 </template>

@@ -5,7 +5,7 @@
       <div class="image m-auto">
         <img class="img-fluid" :src="product.photoURL" alt />
       </div>
-      <p class="lead my-2 text-info">{{ product.model }}</p>
+      <p class="lead my-2 text-info">{{ product.dish }}</p>
       <p class="lead text-danger">
         Price{{ " " }}
         <span class="text-muted">₹ {{ formatPrice(product.price) }}</span>

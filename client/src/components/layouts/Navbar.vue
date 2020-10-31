@@ -1,15 +1,15 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
     <div class="text-light navbar-brand">
-      <i class="fad fa-2x fa-phone-office"></i>
+      <i class="fa-2x fad fa-burger-soda"></i>
     </div>
     <!-- <button class="navbar-toggler" type="button">
       <span class="navbar-toggler-icon"></span>
     </button>-->
     <div>
-      <ul class="navbar-nav mr-auto ml-3">
+      <ul class="navbar-nav mr-auto">
         <router-link tag="li" to="/" exact class="nav-item active">
-          <a class="nav-link lead">Phone Store</a>
+          <a class="nav-link lead">Food Site</a>
         </router-link>
       </ul>
     </div>
@@ -22,8 +22,8 @@
             class="btn mr-2 btn-info"
             id="add-btn"
           >
-            <i class="fal fa-plus"></i>
-            Add Product
+            <i class="fad fa-utensils-alt"></i>
+            Add Food
           </router-link>
         </li>
         <li class="nav-item">

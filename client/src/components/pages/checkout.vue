@@ -10,8 +10,9 @@
           <table class="table mt-4">
             <thead>
               <tr class="text-uppercase">
-                <th scope="col">products</th>
-                <th scope="col">model</th>
+                <th scope="col">Food items</th>
+                <th scope="col">Dish name</th>
+                <th scope="col">Restaurant</th>
                 <th scope="col">price</th>
                 <th scope="col">quantity</th>
                 <th scope="col">total</th>
@@ -30,9 +31,10 @@
                 </th>
                 <td>
                   <router-link :to="'/view/' + item._id">{{
-                    item.model
+                    item.dish
                   }}</router-link>
                 </td>
+                <td class="price text-danger">{{ item.restaurant }}</td>
                 <td class="price">₹ {{ formatPrice(item.price) }}</td>
                 <td class="font-weight-bold">{{ item.quantity }}</td>
                 <td class="price">

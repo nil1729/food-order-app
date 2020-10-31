@@ -7,12 +7,22 @@
         <p v-else class="lead mb-0">In Cart</p>
       </button>
     </div>
-    <div class="card-body d-flex justify-content-between align-items-center border-top">
-      <router-link
-        :to="product && `/view/${product._id}`"
-        class="card-text lead mb-0"
-      >{{product && product.model}}</router-link>
-      <p class="card-text lead">₹ {{product && formatPrice(product.price)}}</p>
+    <div class="card-body  border-top">
+      <div class="d-flex justify-content-between align-items-center">
+        <router-link
+          :to="product && `/view/${product._id}`"
+          class="card-text lead mb-0"
+        >{{product && product.dish}}</router-link>
+        <p class="card-text lead font-weight-bold">₹ {{product && formatPrice(product.price)}}</p> 
+      </div>
+      <div class="d-flex justify-content-between align-items-center">
+        <p class="lead mb-0">
+          From <span class='text-danger'>{{ product && product.restaurant }}</span>
+        </p> 
+        <div class="reviews stars-outer ml-1">
+          <div class="stars-inner" :style="{'width': `${((product.averageRating || 0)/5)*100}%`}"></div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -33,11 +43,11 @@ export default {
 
 <style scoped>
 .image {
-  background-size: cover;
+  background-size: center;
   background-position: center;
   background-repeat: no-repeat;
   width: 100%;
-  height: 18rem;
+  height: 16rem;
   overflow: hidden;
   position: relative;
   text-align: center;
@@ -58,10 +68,10 @@ export default {
 }
 .image img {
   height: 100%;
-  /* width: 100%; */
+  width: 100%;
   transition: 0.5s linear all;
   margin: auto;
-  padding: 2rem;
+  padding: 10px;
 }
 .image:hover img {
   transform: scale(1.1);
@@ -70,8 +80,9 @@ export default {
   bottom: 0;
   right: 0;
 }
+
 .card-body {
-  padding: 1.25rem 0.8rem;
+  padding: 0.8rem;
 }
 .card-body .lead {
   font-weight: 500;

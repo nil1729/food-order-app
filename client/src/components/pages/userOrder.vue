@@ -14,7 +14,7 @@
           :key="order._id"
           class="container border mb-4"
         >
-          <h5 class="mt-4 ml-2 order-header pb-1 mb-2">
+          <h5 class="font-weight-bold text-dark mt-4 ml-2 order-header pb-1 mb-2">
             OrderID:
             <span class="font-weight-normal">#{{ order._id }}</span>
           </h5>
@@ -50,8 +50,9 @@
           >
             <thead>
               <tr class="text-uppercase">
-                <th scope="col">products</th>
-                <th scope="col">model</th>
+                <th scope="col">food items</th>
+                <th scope="col">dish name</th>
+                <th scope="col">restaurant</th>
                 <th scope="col">price</th>
                 <th scope="col">quantity</th>
               </tr>
@@ -69,9 +70,10 @@
                 </th>
                 <td>
                   <router-link :to="'/view/' + item.product._id">{{
-                    item.product.model
+                    item.product.dish
                   }}</router-link>
                 </td>
+                <td class="price text-danger">{{ item.product.restaurant }}</td>
                 <td class="price">₹ {{ formatPrice(item.product.price) }}</td>
                 <td class="font-weight-bold">{{ item.quantity }}</td>
               </tr>
@@ -130,6 +132,8 @@ export default {
 h5.order-header {
   border-bottom: 1.5px solid #dee2e6;
   width: fit-content;
+}
+h5.order-header span {
   color: blue;
 }
 .order-text {
