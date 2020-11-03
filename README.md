@@ -7,7 +7,7 @@ Simple food ordering website Using VueJS, firebase, NodeJS and MongoDB.
     - Email: `user@gmail.co`
     - Password: `123456`
   - Test Admin Credentials
-    - Email: `foodsite@store.com`
+    - Email: `admin@foodsite.com`
     - Password: `123456`
   - Test PayPal Credentials
     - Email: `nil.personal.dev@gmail.com`
