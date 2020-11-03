@@ -1,7 +1,8 @@
 <template>
   <div v-if="loading" class="container d-flex justify-content-center align-items-center">
     <div class="modal-box text-center">
-      <h5 class="font-weight-normal">New Dish is Uploading ...</h5>
+      <h5 v-if="updating">Dish is now updating ...</h5>
+      <h5 v-else class="font-weight-normal">New Dish is Uploading ...</h5>
       <img class="my-3" src="@/assets/backdrop.gif" alt />
     </div>
   </div>
@@ -14,6 +15,9 @@ export default {
     loading() {
       return this.$store.state.productUploading;
     },
+    updating() {
+      return this.$route.name === 'Dish Update';
+    }
   },
 };
 </script>

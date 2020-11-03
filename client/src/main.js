@@ -8,7 +8,7 @@ Vue.config.productionTip = false;
 
 let app;
 
-firebase.auth().onAuthStateChanged(function (user) {
+firebase.auth().onAuthStateChanged(function(user) {
 	if (!app) {
 		app = new Vue({
 			router,
@@ -23,20 +23,28 @@ firebase.auth().onAuthStateChanged(function (user) {
 					this.$store.commit('SET_PAGE_LOADING', false);
 				}
 			},
-			render: h => h(App),
+			render: (h) => h(App),
 		}).$mount('#app');
 	}
 });
 
-
-
 // =========== Just For Fun ============ //
 
-const warningTitleCSS = 'color:red; font-size:60px; font-weight: bold; -webkit-text-stroke: 1px black;';
+const warningTitleCSS =
+	'color:red; font-size:60px; font-weight: bold; -webkit-text-stroke: 1px black;';
 const warningDescCSS = 'font-size: 18px;';
 console.log('%cThank You!', warningTitleCSS);
-console.log("%cMade by Nilanjan. Using Firebase, VueJS, NodeJS and MongoDB", warningDescCSS);
-console.log('%cGo to https://github.com/nil1729/food-order-app for source code.', warningDescCSS);
-console.log('%cIf you like this project, Please give a star on this repository.', warningDescCSS);
+console.log(
+	'%cMade by Nilanjan. Using Firebase, VueJS, NodeJS and MongoDB',
+	warningDescCSS
+);
+console.log(
+	'%cGo to https://github.com/nil1729/food-order-app for source code.',
+	warningDescCSS
+);
+console.log(
+	'%cIf you like this project, Please give a star on this repository.',
+	warningDescCSS
+);
 
 // =================================== //

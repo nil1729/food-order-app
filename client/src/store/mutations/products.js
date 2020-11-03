@@ -17,5 +17,15 @@ export default {
     },
     SET_FOOD_COMBOS(state, payload) {
       state.foodCombos = payload;
+    },
+    UPDATE_SINGLE_PRODUCT(state, product) {
+        state.products.results = state.products.results.map(item => {
+          if(item._id === product._id) {
+            return {
+              ...item,
+              ...product
+            };
+          } else return item;
+        });
     }
 }

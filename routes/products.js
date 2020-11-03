@@ -117,7 +117,7 @@ router.post('/admin/add-product', verifyAuth, async (req, res) => {
 		const product = await Product.create(req.body);
 		return res.json({
 			code: 'Server Notification',
-			message: 'Product Details Uploaded Successfully',
+			message: 'New Dish Uploaded Successfully',
 			id: product._id,
 		});
 	} catch (e) {
@@ -127,6 +127,28 @@ router.post('/admin/add-product', verifyAuth, async (req, res) => {
 		});
 	}
 });
+
+
+router.post('/admin/products/:id/update', verifyAuth, async (req, res) => {
+	try {
+		if (!req.siteAdmin) {
+			return res.status(403).json({
+				msg: 'Unauthorized Access',
+			});
+		}
+		const product = await Product.updateOne({_id: req.params.id}, {$set: {...req.body}});
+		return res.json({
+			code: 'Server Notification',
+			message: 'Dish updated successfully',
+			id: product._id,
+		});
+	} catch (e) {
+		console.log(e);
+		return res.status(500).json({
+			msg: 'Server error',
+		});
+	}
+})
 
 router.get('/view/product/:id', verifyAuth, async (req, res) => {
 	try {
@@ -190,7 +212,8 @@ router.get('/products/search', verifyAuth, async (req, res) => {
                     "Rolls",
                     "Momos",
                     "Ice Cream",
-                    "Noodles"
+					"Noodles",
+					"Combos"
 				];
 		
 
@@ -203,9 +226,6 @@ router.get('/products/search', verifyAuth, async (req, res) => {
 		if(category) foodCategories = [category];
 
 		if(!price) price = 100; 
-
-
-		console.log(text);
 
 
 		if(stocked) {

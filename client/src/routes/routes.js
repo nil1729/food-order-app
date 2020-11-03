@@ -70,6 +70,11 @@ const routes = [{
 						component: () => import('@/components/pages/addProduct.vue')
 					},
 					{
+						path: 'product/:id/update',
+						name: 'Dish Update',
+						component: () => import('@/components/pages/updateProduct.vue')
+					},
+					{
 						path: 'orders',
 						component: () => import('@/components/pages/adminOrders.vue')
 					}
