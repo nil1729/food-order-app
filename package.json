@@ -23,7 +23,7 @@
 		"inquirer": "^7.3.3",
 		"mongoose": "^5.9.29",
 		"unique-names-generator": "^4.3.0",
-		"validator": "^13.1.17"
+		"validator": "^13.6.0"
 	},
 	"devDependencies": {
 		"concurrently": "^5.3.0",
