@@ -30,4 +30,4 @@ jobs:
 
       - run: npm run setup_env
       - run: npm run prod_setup
-      - run: DB_URI="${{secrets.MONGO_URI}}" NODE_ENV=production npm start
+      - run: npm run ci_test
