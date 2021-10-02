@@ -2,4 +2,6 @@ node_modules
 .env
 secret.json
 public
+package-lock.json
+yarn.lock
 # client

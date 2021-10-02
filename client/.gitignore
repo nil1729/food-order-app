@@ -2,6 +2,9 @@
 node_modules
 /dist
 config.js
+package-lock.json
+yarn.lock
+
 
 # local env files
 .env.local
