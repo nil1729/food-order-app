@@ -1,8 +1,6 @@
 name: Food-Order-App-Production-CI
 
 on:
-  push:
-    branches: [master, develop]
   pull_request:
     branches: [master, develop]
 
