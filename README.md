@@ -1,4 +1,4 @@
-## Food Ordering Web App using Vue JS
+## Food Ordering Web App using Vue.JS
 
 Simple food ordering website Using VueJS, firebase, NodeJS and MongoDB.
 
