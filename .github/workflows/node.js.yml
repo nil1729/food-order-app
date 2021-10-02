@@ -23,5 +23,14 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
 
-      - run: npm install
-      - run: DB_URI="${{secrets.MONGO_URI}}" npm start
+      - name: Decrypt large secret
+        run: ./.github/scripts/decrypt_secret.sh
+        env:
+          LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PASSPHRASE }}
+
+      - name: Test printing your secret (Remove this step in production)
+        run: cat $HOME/config/secret.json
+
+      # - run: npm run setup_env
+      # - run: npm run prod_setup
+      # - run: DB_URI="${{secrets.MONGO_URI}}" NODE_ENV=production npm start

@@ -4,12 +4,13 @@
 	"description": "Simple Food Ordering Web App using VueJS and NodeJS",
 	"main": "server.js",
 	"scripts": {
-		"setup": "npm install && npm install --prefix client",
+		"setup_env": "npm install && npm install --prefix client",
 		"start": "node server.js",
 		"admin": "node admin add",
 		"server": "nodemon server",
 		"client": "npm run serve --prefix client",
-		"dev": "concurrently \"npm run server\" \"npm run client\""
+		"dev": "concurrently \"npm run server\" \"npm run client\"",
+		"prod_setup": "npm run build --prefix client"
 	},
 	"keywords": [],
 	"author": "Nilanjan Deb",
