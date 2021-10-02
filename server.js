@@ -4,14 +4,10 @@ if (process.env.NODE_ENV !== 'production') {
 
 const express = require('express');
 const app = express();
-const PORT = process.env.PORT || 5000;
 const auths = require('./routes/auths');
 const products = require('./routes/products');
 const orders = require('./routes/orders');
 const admin = require('./routes/admin');
-const connectDB = require('./config/db');
-
-connectDB();
 
 app.use(express.json());
 app.use('/api/v1', auths);
@@ -26,6 +22,4 @@ if (process.env.NODE_ENV === 'production') {
 	});
 }
 
-app.listen(PORT, () => {
-	console.log(`Server started on port ${PORT}`);
-});
+module.exports = app;
