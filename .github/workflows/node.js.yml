@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Food-Order-App-Production-CI
 
 on:
   push:
@@ -28,9 +28,6 @@ jobs:
         env:
           LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PASSPHRASE }}
 
-      - name: Test printing your secret (Remove this step in production)
-        run: cat $HOME/runner/work/food-order-app/food-order-app/config/secret.json
-
-      # - run: npm run setup_env
-      # - run: npm run prod_setup
-      # - run: DB_URI="${{secrets.MONGO_URI}}" NODE_ENV=production npm start
+      - run: npm run setup_env
+      - run: npm run prod_setup
+      - run: DB_URI="${{secrets.MONGO_URI}}" NODE_ENV=production npm start
