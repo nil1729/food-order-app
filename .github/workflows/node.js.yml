@@ -29,7 +29,7 @@ jobs:
           LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PASSPHRASE }}
 
       - name: Test printing your secret (Remove this step in production)
-        run: cat $HOME/config/secret.json
+        run: cat $HOME/runner/work/food-order-app/food-order-app/config/secret.json
 
       # - run: npm run setup_env
       # - run: npm run prod_setup
