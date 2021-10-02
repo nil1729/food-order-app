@@ -12,8 +12,65 @@
 <script>
 import Alert from './components/utils/Alerts';
 import PageLoader from './components/layouts/PageLoader';
+
+import Vue from "vue";
+import VueMeta from "vue-meta";
+
+Vue.use(VueMeta);
+
 export default {
 	name: 'App-Phone-Store',
+	metaInfo: {
+		title: "Food Ordering Web App",
+		meta: [
+		  { charset: "utf-8" },
+		  { name: "viewport", content: "width=device-width, initial-scale=1" },
+		  {
+			property: "og:title",
+			content: "Food Ordering Web App",
+		  },
+		  {
+			property: "og:description",
+			content: "Simple food ordering website Using VueJS, firebase, NodeJS and MongoDB.",
+		  },
+		  {
+			property: "og:type",
+			content: "food",
+		  },
+		  {
+			property: "og:site_name",
+			content: "Simple food ordering website Using VueJS, firebase, NodeJS and MongoDB.",
+		  },
+		  {
+			name: "keywords",
+			content: "food, vuejs, firebase, nodejs, mongodb",
+		  },
+		  {
+			name: "copyright",
+			content: "Food Ordering Web App",
+		  },
+		  {
+			property: "language",
+			content: "en",
+		  },
+		  {
+			property: "revisit-after",
+			content: "3 days",
+		  },
+		  {
+			property: "coverage",
+			content: "Worldwide",
+		  },
+		  {
+			property: "summary",
+			content: "Simple food ordering website Using VueJS, firebase, NodeJS and MongoDB."
+		  },
+		  {
+			property: "robots",
+			content: "index, follow",
+		  },
+		],
+	},
 	computed: {
 		loading() {
 			return this.$store.state.pageLoading;
