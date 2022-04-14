@@ -22,27 +22,19 @@
 							<tr v-for="item in cartItems" :key="item._id">
 								<th scope="row">
 									<div class="image">
-										<img
-											:src="item.photoURL"
-											:alt="item._id"
-											class="img-thumbnail img-fluid"
-										/>
+										<img :src="item.photoURL" :alt="item._id" class="img-thumbnail img-fluid" />
 									</div>
 								</th>
 								<td>
-									<router-link :to="'/view/' + item._id">{{
-										item.dish
-									}}</router-link>
+									<router-link :to="'/view/' + item._id">{{ item.dish }}</router-link>
 								</td>
 								<td class="price text-danger">{{ item.restaurant }}</td>
 								<td class="price">
-									₹{{ windowWidth > 600 ? '  ' : ''
-									}}{{ formatPrice(item.price) }}
+									₹{{ windowWidth > 600 ? '  ' : '' }}{{ formatPrice(item.price) }}
 								</td>
 								<td class="font-weight-bold">{{ item.quantity }}</td>
 								<td class="price">
-									₹{{ windowWidth > 600 ? '  ' : ''
-									}}{{ formatPrice(item.price * item.quantity) }}
+									₹{{ windowWidth > 600 ? '  ' : '' }}{{ formatPrice(item.price * item.quantity) }}
 								</td>
 							</tr>
 						</tbody>
@@ -58,9 +50,7 @@
 						</p>
 						<p class="lead text-primary">
 							Tax (GST 5%) :
-							<span class="ml-2 font-weight-normal text-dark"
-								>₹ {{ formatPrice(taxTotal) }}</span
-							>
+							<span class="ml-2 font-weight-normal text-dark">₹ {{ formatPrice(taxTotal) }}</span>
 						</p>
 						<p class="lead text-primary">
 							Grand Total :
@@ -69,10 +59,15 @@
 							>
 						</p>
 						<div v-if="!isPaid">
-							<div v-if="!scriptLoaded" class="script__loader mx-auto my-3">
+							<div v-if="!razorPaySdkLoaded" class="script__loader mx-auto my-3">
 								<img src="@/assets/script-loader.gif" alt="" />
 							</div>
-							<div ref="paypal"></div>
+							<div v-else class="text-center mb-4 mt-2">
+								<button class="btn btn-info px-3 py-0" @click="displayRazorPay">
+									<img src="@/assets/razorpay-icon.svg" alt="" height="40" width="40" />Pay with
+									RazorPay
+								</button>
+							</div>
 						</div>
 						<div v-else class="mt-4">
 							<h3 class="text-success">
@@ -98,11 +93,11 @@ export default {
 	name: 'Cart-Page',
 	data() {
 		return {
-			scriptLoaded: false,
-			orderStaticID: null,
 			processing: false,
 			isPaid: false,
 			windowWidth: window.innerWidth,
+			orderDetailsForCheckout: null,
+			razorPaySdkLoaded: false,
 		};
 	},
 	components: {
@@ -112,43 +107,80 @@ export default {
 		window.onresize = () => {
 			this.windowWidth = window.innerWidth;
 		};
-		const script = document.createElement('script');
-		script.src =
-			'https://www.paypal.com/sdk/js?currency=INR&client-id=AXsLVcFA2ZoKFGZXP2iFqfxeQSZf6hXfs13g98BVzq_ZZWvLfJCtHoXDYYwyPYpahuIlK80EnAxYmAJy';
-		script.addEventListener('load', this.setLoaded);
-		document.body.appendChild(script);
+		this.loadRazorPaySdk();
 	},
 	methods: {
-		async setLoaded() {
-			this.scriptLoaded = true;
+		async loadScript(srcPath) {
+			return new Promise((resolve) => {
+				const scriptEl = document.createElement('script');
+				scriptEl.src = srcPath;
+				document.body.appendChild(scriptEl);
+				scriptEl.onload = () => {
+					resolve(true);
+				};
+				scriptEl.onerror = () => {
+					resolve(false);
+				};
+				document.body.appendChild(scriptEl);
+			});
+		},
+
+		async loadRazorPaySdk() {
+			try {
+				await this.loadScript(process.env.VUE_APP_RAZORPAY_SCRIPT_SRC);
+				const orderDetails = await this.$store.dispatch('fetchCheckoutItems');
+				this.orderDetailsForCheckout = orderDetails;
+				this.razorPaySdkLoaded = true;
+			} catch (e) {
+				console.log(e);
+			}
+		},
+
+		async displayRazorPay() {
 			const vm = this;
-			window.paypal
-				.Buttons({
-					async createOrder(data, actions) {
-						const checkoutDesc = await vm.$store.dispatch('fetchCheckoutItems');
-						vm.orderStaticID = checkoutDesc.description.split('--')[2];
-						return actions.order.create({
-							purchase_units: [checkoutDesc],
-						});
+			if (this.razorPaySdkLoaded) {
+				const options = {
+					key: process.env.VUE_APP_RAZORPAY_KEY_ID,
+					name: process.env.VUE_APP_WEBSITE_BRAND_NAME,
+					description: process.env.VUE_APP_CHECKOUT_DESCRIPTION,
+					image: process.env.VUE_APP_RAZORPAY_POPUP_IMAGE,
+					order_id: this.orderDetailsForCheckout.order_details.id,
+					handler: async function(response) {
+						await vm.savePaymentDetails(response);
 					},
-					async onApprove(data) {
-						vm.processing = true;
-						vm.isPaid = true;
-
-						await vm.$store.dispatch('verifyPurchase', {
-							orderStaticID: vm.orderStaticID,
-							orderID: data.orderID,
-						});
-
-						vm.handleEmptyCart();
-
-						vm.processing = false;
-						vm.isPaid = false;
-
-						vm.$router.push('/profile/orders'); // Redirect to Orders page TODO
+					prefill: {
+						name: process.env.VUE_APP_DEVELOPER_NAME,
+						email: process.env.VUE_APP_DEVELOPER_EMAIL_ADDRESS,
 					},
-				})
-				.render(this.$refs.paypal);
+					theme: {
+						color: process.env.VUE_APP_RAZORPAY_POPUP_COLOR,
+					},
+				};
+				const paymentObj = new window.Razorpay(options);
+				this.razorPaySdkLoaded = true;
+				paymentObj.open();
+			} else {
+				alert('RazorPay not loaded. Kindly reload this page and try again');
+			}
+		},
+
+		async savePaymentDetails(payment_response) {
+			try {
+				this.processing = true;
+				this.isPaid = true;
+
+				await this.$store.dispatch('verifyPurchase', {
+					orderStaticID: this.orderDetailsForCheckout.order_static_id,
+					paymentResponse: payment_response,
+				});
+
+				this.handleEmptyCart();
+				this.processing = false;
+				this.isPaid = false;
+				this.$router.push('/profile/orders');
+			} catch (e) {
+				console.log(e);
+			}
 		},
 		async handleEmptyCart() {
 			this.$store.commit('CLEAR_CART');
@@ -171,9 +203,7 @@ export default {
 		},
 		productTotal() {
 			let total = 0;
-			this.$store.state.cart.forEach(
-				(item) => (total += item.price * item.quantity)
-			);
+			this.$store.state.cart.forEach((item) => (total += item.price * item.quantity));
 			return parseFloat(total.toFixed(2));
 		},
 		taxTotal() {

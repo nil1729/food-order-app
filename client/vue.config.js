@@ -2,9 +2,9 @@ const path = require('path');
 module.exports = {
 	outputDir: path.resolve(__dirname, '../public'),
 	devServer: {
-		proxy: 'http://localhost:5000',
+		proxy: 'http://localhost:5050',
 	},
 	configureWebpack: {
-		devtool: 'cheap-source-map'
-	}
+		devtool: 'cheap-source-map',
+	},
 };
