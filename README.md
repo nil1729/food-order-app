@@ -2,7 +2,7 @@
 
 Simple food ordering website Using VueJS, firebase, NodeJS and MongoDB.
 
-- #### Live Demo [here](https://food-order-app-nil.herokuapp.com/).
+- #### Live Demo [here](https://food-app.nildeb.xyz/).
   - Test User Credentials
     - Email: `user@gmail.co`
     - Password: `123456`
@@ -37,7 +37,7 @@ Simple food ordering website Using VueJS, firebase, NodeJS and MongoDB.
    - NodeJS installed on your Local machine
    - MongoDB installed on your local machine or have an Atlas Account.
    - A Gmail Account for Firebase Services.
-   - A PayPal Account and a Sandbox account for testing purposes.
+   - A RazorPay Account for testing payments.
 
 2. **Credentials Setup**
 
@@ -45,7 +45,7 @@ Simple food ordering website Using VueJS, firebase, NodeJS and MongoDB.
    - Setup a `Firebase Project` for using `Firestore and Authentication`. Find Tutorials [here](https://www.youtube.com/watch?v=6juww5Lmvgo).
    - Setup [Firestore](https://www.youtube.com/watch?v=UFLvSp4Mh9k&list=PL4cUxeGkcC9itfjle0ji1xOZ2cjRGY_WB&index=2) and [Enable Authenitaion Methods](https://www.youtube.com/watch?v=-OKrloDzGpU)
    - Generate `Private keys for Firebase Admin`. Find tutorials [here](https://youtu.be/WtYzHTXHBp0).
-   - Create a `PayPal account` and `Sandbox account`. Find Tutorials [here](https://www.youtube.com/watch?v=AtZGoueL4Vs&t=293s)
+   - Setup `RazorPay` Payment Method on our Website. Find Tutorials [here](https://www.youtube.com/watch?v=nGZbqT4lb_g)
 
 3. **Project Setup**
 
@@ -128,9 +128,9 @@ Simple food ordering website Using VueJS, firebase, NodeJS and MongoDB.
 
 <!-- --- -->
 
-<!-- ### Website Preview
+### Website Preview
 
-## <img src="./preview.png" alt="Nilanjan Deb"> -->
+<img src="./previews/preview.jpg" alt="Nilanjan Deb">
 
 ---
 
