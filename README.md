@@ -7,11 +7,12 @@ Simple food ordering website Using VueJS, firebase, NodeJS and MongoDB.
     - Email: `user@gmail.co`
     - Password: `123456`
   - Test Admin Credentials
-    - Email: `admin@foodsite.com`
+    - Email: `admin@nildeb.xyz`
     - Password: `123456`
-  - Test PayPal Credentials
-    - Email: `nil.personal.dev@gmail.com`
-    - Password: `123456789`
+  - Test RazorPay Credentials (Net Banking Recommended)
+    - Card Number: `4111 1111 1111 1111`
+    - Expiry: `Any Future Month`
+    - CVV: `Any three Digit Number`
 - #### Github Repository [link](https://github.com/nil1729/food-order-app).
 
 ---
@@ -88,11 +89,26 @@ Simple food ordering website Using VueJS, firebase, NodeJS and MongoDB.
      ```
 
    - Create a `.env` file on root directory. Which Contains all necessary Secret Credentials (for backend only) for this site.
+
      ```
       DB_URI = <- Mongo Atlas URI ->
-      PAYPAL_CLIENT_ID = <- PayPal Sandbox Client ID (Also use your own client ID on Frontend) ->
-      PAYPAL_CLIENT_SECRET = <- PayPal Sandbox Client Secret (Only for backend server to verify purchase) ->
+      RAZORPAY_KEY_ID = <- Start RazorPay in Test Mode and Create API Key and paste the KEY ID ->
+      RAZORPAY_KEY_SECRET = <- Start RazorPay in Test Mode and Create API Key and paste the KEY SECRET (Only For Backend) ->
      ```
+
+   - Create a `.env` file on `client` directory. Which Contains all necessary Secret Credentials (for frontend only).
+
+     ```
+        VUE_APP_RAZORPAY_KEY_ID = <- Key ID generated for API key on RazorPay Developer Portal same as Backend RAZORPAY_KEY_ID ->
+        VUE_APP_DEVELOPER_NAME =
+        VUE_APP_DEVELOPER_EMAIL_ADDRESS =
+        VUE_APP_RAZORPAY_POPUP_COLOR = <- HEX Color Code ->
+        VUE_APP_WEBSITE_BRAND_NAME =
+        VUE_APP_CHECKOUT_DESCRIPTION =
+        VUE_APP_RAZORPAY_SCRIPT_SRC = https://checkout.razorpay.com/v1/checkout.js
+        VUE_APP_RAZORPAY_POPUP_IMAGE = <- Hosted Image URL ->
+     ```
+
    - Run this command
 
      ```

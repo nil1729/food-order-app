@@ -32,8 +32,7 @@
 						</thead>
 						<tbody>
 							<th scope="row">
-								₹{{ windowWidth > 600 ? '  ' : ''
-								}}{{ formatPrice(order.amount) }}
+								₹{{ windowWidth > 600 ? '  ' : '' }}{{ formatPrice(order.amount) }}
 							</th>
 							<td>{{ order.orderID }}</td>
 							<td>{{ formatTime(order.transactionTime) }}</td>
@@ -90,8 +89,7 @@
 										}}</router-link>
 									</td>
 									<td class="price">
-										₹{{ windowWidth > 600 ? '  ' : ''
-										}}{{ formatPrice(item.product.price) }}
+										₹{{ windowWidth > 600 ? '  ' : '' }}{{ formatPrice(item.product.price) }}
 									</td>
 									<td class="font-weight-bold">{{ item.quantity }}</td>
 								</tr>
@@ -127,9 +125,7 @@
 									</p>
 									<p class="mb-1 text-primary mt-3">
 										Payment Capture ID :
-										<span class="ml-2 font-weight-normal text-dark">{{
-											order.captureID
-										}}</span>
+										<span class="ml-2 font-weight-normal text-dark">{{ order.paymentID }}</span>
 									</p>
 								</div>
 							</div>
@@ -158,9 +154,8 @@
 									<p class="mb-1 text-primary mt-3">
 										City :
 										<span class="ml-2 font-weight-normal text-dark">
-											{{ order.shippingAddress.city }}, {{ ' ' }}
-											{{ order.shippingAddress.state }}, {{ ' ' }}
-											{{ order.shippingAddress.country }}</span
+											{{ order.shippingAddress.city }}, {{ ' ' }} {{ order.shippingAddress.state }},
+											{{ ' ' }} {{ order.shippingAddress.country }}</span
 										>
 									</p>
 									<p class="mb-1 text-primary mt-3">
@@ -194,10 +189,7 @@ export default {
 	computed: {
 		...mapGetters(['formatPrice', 'formatTime']),
 		isEmpty: function() {
-			return (
-				this.$store.state.adminOrders &&
-				this.$store.state.adminOrders.length === 0
-			);
+			return this.$store.state.adminOrders && this.$store.state.adminOrders.length === 0;
 		},
 	},
 	async mounted() {
