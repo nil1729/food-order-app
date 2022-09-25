@@ -9,7 +9,7 @@
 	},
 	"dependencies": {
 		"axios": "^0.21.3",
-		"core-js": "^3.6.5",
+		"core-js": "3.25.2",
 		"firebase": "^8.0.1",
 		"moment": "^2.29.1",
 		"validator": "^13.6.0",
