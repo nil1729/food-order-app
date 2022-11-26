@@ -27,7 +27,7 @@
     "firebase": "^7.18.0",
     "firebase-admin": "^9.1.0",
     "inquirer": "^7.3.3",
-    "mongoose": "^5.9.29",
+    "mongoose": "^6.0.0",
     "randomstring": "^1.2.2",
     "razorpay": "^2.8.1",
     "unique-names-generator": "^4.6.0",
