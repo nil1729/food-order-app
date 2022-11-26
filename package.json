@@ -1,42 +1,43 @@
 {
-	"name": "food-order-app",
-	"version": "2.1.0",
-	"description": "Simple Food Ordering Web App using VueJS and NodeJS",
-	"main": "index.js",
-	"scripts": {
-		"setup_env": "npm install && npm install --prefix client",
-		"start": "node index.js",
-		"admin": "node admin add",
-		"server": "nodemon server",
-		"client": "npm run serve --prefix client",
-		"dev": "concurrently \"npm run server\" \"npm run client\"",
-		"prod_setup": "npm run build --prefix client",
-		"test": "jest --detectOpenHandles --runInBand ./tests",
-		"ci_test": "NODE_ENV=production npm run test"
-	},
-	"jest": {
-		"testEnvironment": "node"
-	},
-	"keywords": [],
-	"author": "Nilanjan Deb",
-	"license": "MIT",
-	"dependencies": {
-		"commander": "^6.0.0",
-		"express": "^4.17.1",
-		"firebase": "^7.18.0",
-		"firebase-admin": "^9.1.0",
-		"inquirer": "^7.3.3",
-		"mongoose": "^5.9.29",
-		"randomstring": "^1.2.2",
-		"razorpay": "^2.8.1",
-		"unique-names-generator": "^4.6.0",
-		"validator": "^13.1.17"
-	},
-	"devDependencies": {
-		"concurrently": "^5.3.0",
-		"dotenv": "^8.2.0",
-		"jest": "^27.2.4",
-		"nodemon": "^2.0.4",
-		"supertest": "^6.1.6"
-	}
+  "name": "food-order-app",
+  "version": "2.1.0",
+  "description": "Simple Food Ordering Web App using VueJS and NodeJS",
+  "main": "index.js",
+  "scripts": {
+    "setup_env": "npm install && npm install --prefix client",
+    "start": "node index.js",
+    "admin": "node admin add",
+    "server": "nodemon server",
+    "client": "npm run serve --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "prod_setup": "npm run build --prefix client",
+    "test": "jest --detectOpenHandles --runInBand ./tests",
+    "ci_test": "NODE_ENV=production npm run test",
+    "start:prod": "NODE_ENV=production npm start"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "keywords": [],
+  "author": "Nilanjan Deb",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^6.0.0",
+    "express": "^4.17.1",
+    "firebase": "^7.18.0",
+    "firebase-admin": "^9.1.0",
+    "inquirer": "^7.3.3",
+    "mongoose": "^5.9.29",
+    "randomstring": "^1.2.2",
+    "razorpay": "^2.8.1",
+    "unique-names-generator": "^4.6.0",
+    "validator": "^13.1.17"
+  },
+  "devDependencies": {
+    "concurrently": "^5.3.0",
+    "dotenv": "^8.2.0",
+    "jest": "^27.2.4",
+    "nodemon": "^2.0.4",
+    "supertest": "^6.1.6"
+  }
 }

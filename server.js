@@ -1,4 +1,7 @@
-require('dotenv').config();
+const path = require('path');
+const configFilePath = path.join('/opt/nil1729/food-order-app/backend.env');
+require('dotenv').config({ path: configFilePath });
+
 const express = require('express');
 const app = express();
 const auths = require('./routes/auths');
@@ -13,10 +16,10 @@ app.use('/api/v1', products);
 app.use('/api/v1', admin);
 
 if (process.env.NODE_ENV === 'production') {
-	app.use(express.static(__dirname + '/public'));
-	app.get('*', async (req, res) => {
-		res.sendFile(__dirname + '/public/index.html');
-	});
+  app.use(express.static(__dirname + '/public'));
+  app.get('*', async (req, res) => {
+    res.sendFile(__dirname + '/public/index.html');
+  });
 }
 
 module.exports = app;
