@@ -1,4 +1,4 @@
-name: Deploy to Production Server
+name: Build & Deploy
 
 on:
   push:
@@ -22,8 +22,9 @@ jobs:
   deploy:
     name: Deploying Image
     runs-on: ubuntu-latest
+    needs: [build]
     steps:
-      - name: Deploying Food Site to the Production
+      - name: Deploying application to remote host
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SERVER_HOST }}
