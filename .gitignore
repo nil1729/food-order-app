@@ -4,4 +4,4 @@ secret.json
 public
 yarn.lock
 package-lock.json
-# client
+.vscode
