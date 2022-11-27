@@ -5,12 +5,14 @@
   "main": "index.js",
   "scripts": {
     "setup_env": "npm install && npm install --prefix client",
-    "start": "node index.js",
     "admin": "node admin add",
-    "server": "nodemon server",
+    "start": "node .",
+    "server": "NODE_ENV=development nodemon . --config nodemon.json",
+    "build:client": "npm run build --prefix client",
+    "prod_setup": "npm run build:client",
+    "start:dev": "concurrently \"npm run server\" \"npm run client\"",
     "client": "npm run serve --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "prod_setup": "npm run build --prefix client",
     "test": "jest --detectOpenHandles --runInBand ./tests",
     "ci_test": "NODE_ENV=production npm run test",
     "start:prod": "NODE_ENV=production npm start"

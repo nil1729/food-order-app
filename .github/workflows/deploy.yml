@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Login to Container Registry
-        run: docker login ${{ secrets.CONTAINER_REGISTRY }} -u ${{ secrets.REGISTRY_USERNAME }} -p ${{ secrets.REGISTRY_PASSWORD }}
+        run: echo ${{ secrets.REGISTRY_PASSWORD }} | docker login ${{ secrets.CONTAINER_REGISTRY }} -u ${{ secrets.REGISTRY_USERNAME }} --password-stdin
 
       - name: Build the latest Docker image
         run: docker build  --tag ${{ secrets.IMAGE_NAME }} .
