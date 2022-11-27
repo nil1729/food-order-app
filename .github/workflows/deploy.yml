@@ -14,7 +14,19 @@ jobs:
         run: docker login ${{ secrets.CONTAINER_REGISTRY }} -u ${{ secrets.REGISTRY_USERNAME }} -p ${{ secrets.REGISTRY_PASSWORD }}
 
       - name: Build the latest Docker image
-        run: docker build  --tag ${{ secrets.IMAGE_NAME }}
+        run: docker build  --tag ${{ secrets.IMAGE_NAME }} .
 
       - name: Push the latest Docker image
         run: docker push ${{ secrets.IMAGE_NAME }}
+
+  deploy:
+    name: Deploying Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploying Food Site to the Production
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          script: bash sync.sh ${{ secrets.APPLICATION_NAME }}
