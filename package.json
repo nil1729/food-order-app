@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "concurrently": "^5.3.0",
-    "dotenv": "^8.2.0",
+    "dotenv": "^17.0.0",
     "jest": "^27.2.4",
     "nodemon": "^2.0.4",
     "supertest": "^6.1.6"
